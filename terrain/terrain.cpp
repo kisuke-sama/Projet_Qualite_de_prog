@@ -3,6 +3,11 @@
 #include <fstream>
 #include <stdexcept>
 
+#include "Terrain.h"
+#include <iostream>
+#include <fstream>
+#include <stdexcept>
+
 // Constructeur
 Terrain::Terrain(int largeur, int hauteur) : largeur(largeur), hauteur(hauteur), depart(nullptr), arrivee(nullptr) {}
 
@@ -61,17 +66,12 @@ void Terrain::sauvegarderDansFichier(const std::string& fichier) const {
         fichierSortie << "\n";
     }
 }
+
 void Terrain::afficher() const {
-    // Bord supérieur
-    std::cout << "+";
-    for (int j = 0; j < largeur; ++j) {
-        std::cout << "-";
-    }
-    std::cout << "+\n";
 
     // Contenu du terrain
     for (int i = 0; i < hauteur; ++i) {
-        std::cout << "|"; // Bord gauche
+        //std::cout << "|"; // Bord gauche
         for (int j = 0; j < largeur; ++j) {
             if (&grille[i][j] == arrivee) {
                 std::cout << "E"; // Arrivée
@@ -82,9 +82,7 @@ void Terrain::afficher() const {
                 bool murGauche = (j > 0 && grille[i][j - 1].getType() == "Mur");
                 bool murDroite = (j < largeur - 1 && grille[i][j + 1].getType() == "Mur");
 
-                if ((murHaut && murBas) && (murGauche && murDroite)) {
-                    std::cout << "+"; // Intersection complète
-                } else if ((murHaut && murGauche) || (murHaut && murDroite) || (murBas && murGauche) || (murBas && murDroite)) {
+                 if ((murHaut && murGauche) || (murHaut && murDroite) || (murBas && murGauche) || (murBas && murDroite)) {
                     std::cout << "+"; // Coin
                 } else if (murHaut || murBas) {
                     std::cout << "|"; // Mur vertical
@@ -97,15 +95,10 @@ void Terrain::afficher() const {
                 std::cout << "."; // Case vide
             }
         }
-        std::cout << "|\n"; // Bord droit
+        std::cout << "\n"; // Bord droit
     }
 
-    // Bord inférieur
-    std::cout << "+";
-    for (int j = 0; j < largeur; ++j) {
-        std::cout << "-";
-    }
-    std::cout << "+\n";
+
 }
 
 // Accesseurs

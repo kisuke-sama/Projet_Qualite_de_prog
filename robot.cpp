@@ -2,29 +2,25 @@
 #include <stdlib.h>     /* rand */
 
 
-Robot::Robot(int tailleTx,int tailleTY)
+Robot::Robot()
 {
-    apparait(tailleTx,tailleTY);
+    apparait();
 }
-
 
 int Robot::retournX() const
 {
     return d_x;
 }
 
-
 int Robot::retournY() const
 {
     return d_y;
 }
 
-
 char Robot::sens() const
 {
     return d_direction;
 }
-
 
 void Robot::tourneD()
 {
@@ -36,7 +32,6 @@ void Robot::tourneD()
     notifierObservateurs();
 }
 
-
 void Robot::tourneG()
 {
     if (d_direction == 'N') d_direction = 'O';
@@ -47,67 +42,41 @@ void Robot::tourneG()
     notifierObservateurs();
 }
 
-
-void Robot::apparait(int tailleTx,int tailleTy)
+void Robot::apparait()
 {
-    d_x=rand()% tailleTx;
-    d_y=rand()% tailleTy;
-    int sensPossible = rand()%4;
-    switch (sensPossible) {
-    case 0:
-        d_direction='N';
-        break;
-
-    case 1:
-        d_direction='E';
-        break;
-
-    case 2:
-        d_direction='S';
-        break;
-
-    case 3:
-        d_direction='O';
-        break;
-
-    default:
-        std::cout << "Direction impossible" << std::endl;
-        break;
-    }
+    d_x=d_terrain.getDepart().getX();
+    d_y=d_terrain.getDepart().getY();
+    d_direction='N';
 }
 
-/*
-    A revoir :
-
-    - gestion des mouvements : est-ce que le robot possÃ¨de une variable 'd_terrain' pour se dÃ©placer ou est-ce que les cases communiquent entre elles
-    pour savoir si on rencontre un mur ou non ?
-*/
 void Robot::avance()
 {
-    if (d_direction == 'N' /*&& d_caseCourante.estVide(x, y - 1)*/)
+    if (d_direction == 'N' && d_terrain.getCase(d_x, d_y -1)!= '-' )
     {
     --d_y;
     notifierObservateurs();
     }
-    else if (d_direction == 'E' /*&& d_caseCourante.estVide(x + 1, y)*/)
+    else if (d_direction == 'E' && d_terrain.getCase(d_x +1, d_y)!= '-')
     {
     ++d_x;
     notifierObservateurs();
     }
-    else if (d_direction == 'S' /*&& d_caseCourante.estVide(x, y + 1)*/)
+    else if (d_direction == 'S' && d_terrain.getCase(d_x, d_y +1)!= '-')
     {
     ++d_y;
     notifierObservateurs();
     }
-    else if(d_direction == 'O' /*&& d_caseCourante.estVide(x - 1, y)*/)
+    else if(d_direction == 'O' && d_terrain.getCase(d_x -1, d_y)!= '-')
     {
     --d_x;
     notifierObservateurs();
     }
-    else {std::cout<<"ne peut pas avancer car il y a un mur" << std::endl;}
-
 }
 
+/*
+Pas sûr de garder cette fonction car on n'est pas censé afficher le labyrinth
+en temps réel
+*/
 char Robot::affichage()
 {
     if (d_direction == 'N' )
@@ -123,13 +92,12 @@ char Robot::affichage()
     {return d_affichage = '<';}
 }
 
-
 void Robot::ajouterObservateur(Observateur* observateur) {
-    observateurs.push_back(observateur);
+    d_observateurs.push_back(observateur);
 }
 
 void Robot::notifierObservateurs() {
-    for (Observateur* observateur : observateurs) {
+    for (Observateur* observateur : d_observateurs) {
         observateur->notifier(d_x, d_y, d_direction);
     }
 }

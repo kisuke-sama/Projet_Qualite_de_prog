@@ -16,10 +16,10 @@ void Menu::run(){
         bool mode;
         std::string nomFichierIn,nomFichierOut;
         Terrain d_terrain{};
-        //Robot robot{};
+        Robot robot{};
 
         std::cout<<"entrez le nom du fichier contenant le labyrinthe : "<<std::endl;
         std::cin>>nomFichierIn;
-        std::cout<<"quelle mÃ©thode le robot doit utiliser pour rÃ©soudre le labyrinthe ? :\n 1- Algorithme de la 'Main Droite'\n2- Algorithme de Pledge"<<std::endl;
+        std::cout<<"quelle méthode le robot doit utiliser pour résoudre le labyrinthe ? :\n 1- Algorithme de la 'Main Droite'\n2- Algorithme de Pledge"<<std::endl;
     }
 }

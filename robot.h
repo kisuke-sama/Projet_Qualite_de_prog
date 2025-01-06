@@ -6,17 +6,19 @@
 class Robot
 {
     public:
-        Robot(int tailleTx,int tailleTY);
+        Robot();
+
+        //Accesseurs
         int retournX() const;
         int retournY() const;
-        char sens() const;
+        char direction() const;
 
         //Tourne a droite ou a gauche
         void tourneD();
         void tourneG();
 
-        // Fait apparaitre un robo dans le terrain Tx ,Ty avec un sens alÃ©atoire
-        void apparait(int tailleTx,int tailleTY);
+        // Fait apparaitre un robo dans le terrain Tx ,Ty avec un sens aléatoire
+        void apparait();
 
         // Avance si la case est vide
         void avance();
@@ -24,17 +26,17 @@ class Robot
         //Affiche la direction dans le terrain
         char affichage();
 
-        // MÃ©thodes pour gÃ©rer les observateurs
+        // Méthodes pour gérer les observateurs
         void ajouterObservateur(Observateur* observateur);
         void notifierObservateurs();
 
     private:
         int d_x,d_y;
         char d_direction,d_affichage;
-        Case d_caseCourante;
-
-    // Liste des observateurs
-    std::vector<Observateur*> observateurs;
+        // Pointeur sur le terrain
+        Terrain* d_terrain;
+        // Liste des observateurs
+        std::vector<Observateur*> d_observateurs;
 };
 
 #endif // ROBOT_H

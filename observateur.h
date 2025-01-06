@@ -14,7 +14,7 @@ public:
     void afficherDeplacements() const;
 
 private:
-    std::vector<std::string> listeDeplacements;
+    std::vector<std::string> d_listeDeplacements;
 };
 
 #endif // OBSERVATEUR_H

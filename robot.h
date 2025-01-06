@@ -1,12 +1,12 @@
 #ifndef ROBOT_H
 #define ROBOT_H
-#include "observateur/observateur.h"
-#include "terrain/case.h"
+#include "observateur.h"
+#include "terrain.h"
 
-class robot
+class Robot
 {
     public:
-        robot(int tailleTx,int tailleTY);
+        Robot(int tailleTx,int tailleTY);
         int retournX() const;
         int retournY() const;
         char sens() const;

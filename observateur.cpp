@@ -4,9 +4,8 @@
 
 void Observateur::notifier(int x, int y, char direction)
  {
-    std::string message = "Le robot s'est déplacé à (" + std::to_string(x) + ", " +
-                          std::to_string(y) + ") en direction " + direction;
-    listeDeplacements.push_back(message);
+    std::string message = "Le robot s'est déplacé à (" + std::to_string(x) + ", " + std::to_string(y) + ") en direction " + std::to_string(direction);
+    d_listeDeplacements.push_back(message);
     std::cout << message << std::endl;
 }
 
@@ -15,7 +14,7 @@ void Observateur::notifier(int x, int y, char direction)
 void Observateur::afficherDeplacements() const
 {
     std::cout << "Liste des déplacements du robot :" << std::endl;
-    for (const auto& message : listeDeplacements) {
+    for (const auto& message : d_listeDeplacements) {
         std::cout << message << std::endl;
     }
 }

@@ -1,5 +1,5 @@
-#ifndef OBSERVATEUR_H
-#define OBSERVATEUR_H
+#ifndef MENU_H
+#define MENU_H
 
 class Menu
 {
@@ -11,4 +11,4 @@ public:
     void run();
 };
 
-#endif // OBSERVATEUR_H
+#endif // MENU_H

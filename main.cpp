@@ -1,6 +1,6 @@
 #include <iostream>
-#include "terrain/terrain.h"
-#include "robot/robot.h"
+#include "terrain.h"
+#include "robot.h"
 
 int main() {
     try {

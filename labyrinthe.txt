@@ -1,0 +1,10 @@
+8 20
+XXXXXXXXXXXXXXXXXXXX
+X......XXXX........X
+X..................X
+X..X...............X
+X..X........X......X
+X..X........X......E
+X..X........X......X
+XXXXXXXXXXXXXXXXXXXX
+

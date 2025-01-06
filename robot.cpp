@@ -2,31 +2,31 @@
 #include <stdlib.h>     /* rand */
 
 
-robot::robot(int tailleTx,int tailleTY)
+Robot::Robot(int tailleTx,int tailleTY)
 {
     apparait(tailleTx,tailleTY);
 }
 
 
-int robot::retournX() const
+int Robot::retournX() const
 {
     return d_x;
 }
 
 
-int robot::retournY() const
+int Robot::retournY() const
 {
     return d_y;
 }
 
 
-char robot::sens() const
+char Robot::sens() const
 {
     return d_direction;
 }
 
 
-void robot::tourneD()
+void Robot::tourneD()
 {
     if (d_direction == 'N') d_direction = 'E';
     else if (d_direction == 'E') d_direction = 'S';
@@ -37,7 +37,7 @@ void robot::tourneD()
 }
 
 
-void robot::tourneG()
+void Robot::tourneG()
 {
     if (d_direction == 'N') d_direction = 'O';
     else if (d_direction == 'E') d_direction = 'N';
@@ -48,7 +48,7 @@ void robot::tourneG()
 }
 
 
-void robot::apparait(int tailleTx,int tailleTy)
+void Robot::apparait(int tailleTx,int tailleTy)
 {
     d_x=rand()% tailleTx;
     d_y=rand()% tailleTy;
@@ -82,7 +82,7 @@ void robot::apparait(int tailleTx,int tailleTy)
     - gestion des mouvements : est-ce que le robot possède une variable 'd_terrain' pour se déplacer ou est-ce que les cases communiquent entre elles
     pour savoir si on rencontre un mur ou non ?
 */
-void robot::avance()
+void Robot::avance()
 {
     if (d_direction == 'N' /*&& d_caseCourante.estVide(x, y - 1)*/)
     {
@@ -108,7 +108,7 @@ void robot::avance()
 
 }
 
-char robot::affichage()
+char Robot::affichage()
 {
     if (d_direction == 'N' )
     {return d_affichage = '^';}
@@ -124,11 +124,11 @@ char robot::affichage()
 }
 
 
-void robot::ajouterObservateur(Observateur* observateur) {
+void Robot::ajouterObservateur(Observateur* observateur) {
     observateurs.push_back(observateur);
 }
 
-void robot::notifierObservateurs() {
+void Robot::notifierObservateurs() {
     for (Observateur* observateur : observateurs) {
         observateur->notifier(d_x, d_y, d_direction);
     }

@@ -2,30 +2,35 @@
 #define TERRAIN_H
 
 #include <vector>
+#include <string>
 #include "Case.h"
 
 class Terrain {
 private:
-    std::vector<std::vector<Case>> grille; // Grille 2D des cases
-    int largeur, hauteur;                 // Dimensions du terrain
-    Case* depart;                         // Pointeur vers la case de départ
-    Case* arrivee;                        // Pointeur vers la case d'arrivée
+    int d_largeurTerrain;
+    int d_hauteurTerrain;
+    std::vector<std::vector<Case>> d_grilleTerrain;
+    Case* d_caseDepart;
+    Case* d_caseArrivee;
+
+    // Méthodes auxiliaires
+    char determinerAffichageMur(int x, int y) const;
 
 public:
     // Constructeur
     Terrain(int largeur = 0, int hauteur = 0);
 
-    // Méthodes pour charger et sauvegarder le terrain
-    void chargerDepuisFichier(const std::string& fichier);
-    void sauvegarderDansFichier(const std::string& fichier) const;
-
-    // Méthode d'affichage
+    // Méthodes principales
+    void chargerDepuisFichier(const std::string& cheminFichier);
+    void sauvegarderDansFichier(const std::string& cheminFichier) const;
     void afficher() const;
 
     // Accesseurs
-    const Case* getDepart() const;
-    const Case* getArrivee() const;
+    const Case* getCaseDepart() const;
+    const Case* getCaseArrivee() const;
     const Case& getCase(int x, int y) const;
+    int getLargeur() const;
+    int getHauteur() const;
 };
 
 #endif // TERRAIN_H

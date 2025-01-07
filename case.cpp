@@ -1,19 +1,19 @@
 #include "Case.h"
 
 // Constructeur
-Case::Case(const std::string& type, int x, int y) : type(type), x(x), y(y) {}
+Case::Case(const std::string& type, int x, int y) : d_typeCase(type), d_positionX(x), d_positionY(y) {}
 
 // Accesseurs
-std::string Case::getType() const { return type; }
-int Case::getX() const { return x; }
-int Case::getY() const { return y; }
+std::string Case::getType() const { return d_typeCase; }
+int Case::getX() const { return d_positionX; }
+int Case::getY() const { return d_positionY; }
 
 // Modificateurs
-void Case::setType(const std::string& newType) { type = newType; }
-void Case::setPosition(int newX, int newY) {
-    x = newX;
-    y = newY;
+void Case::setType(const std::string& nouveauType) { d_typeCase = nouveauType; }
+void Case::setPosition(int x, int y) {
+    d_positionX = x;
+    d_positionY = y;
 }
 
 // Vérifie si la case est un mur
-bool Case::estMur() const { return type == "Mur"; }
+bool Case::estMur() const { return d_typeCase == "Mur"; }

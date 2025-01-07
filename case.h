@@ -5,8 +5,8 @@
 
 class Case {
 private:
-    std::string type; // Type de la case : "Mur", "Vide", "Départ", "Arrivée"
-    int x, y;         // Position de la case
+    std::string d_typeCase; // Type de la case ("Mur", "Vide", etc.)
+    int d_positionX, d_positionY; // Coordonnées de la case
 
 public:
     // Constructeur
@@ -18,8 +18,8 @@ public:
     int getY() const;
 
     // Modificateurs
-    void setType(const std::string& newType);
-    void setPosition(int newX, int newY);
+    void setType(const std::string& nouveauType);
+    void setPosition(int x, int y);
 
     // Vérifie si la case est un mur
     bool estMur() const;

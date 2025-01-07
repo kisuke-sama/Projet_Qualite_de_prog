@@ -17,7 +17,7 @@ int Robot::retournY() const
     return d_y;
 }
 
-char Robot::sens() const
+char Robot::direction() const
 {
     return d_direction;
 }
@@ -44,29 +44,29 @@ void Robot::tourneG()
 
 void Robot::apparait()
 {
-    d_x=d_terrain.getDepart().getX();
-    d_y=d_terrain.getDepart().getY();
+    d_x=d_terrain->getCaseDepart()->getX();
+    d_y=d_terrain->getCaseDepart()->getY();
     d_direction='N';
 }
 
 void Robot::avance()
 {
-    if (d_direction == 'N' && d_terrain.getCase(d_x, d_y -1)!= '-' )
+    if (d_direction == 'N' && !d_terrain->getCase(d_x, d_y -1).estMur() )
     {
     --d_y;
     notifierObservateurs();
     }
-    else if (d_direction == 'E' && d_terrain.getCase(d_x +1, d_y)!= '-')
+    else if (d_direction == 'E' && !d_terrain->getCase(d_x +1, d_y).estMur())
     {
     ++d_x;
     notifierObservateurs();
     }
-    else if (d_direction == 'S' && d_terrain.getCase(d_x, d_y +1)!= '-')
+    else if (d_direction == 'S' && !d_terrain->getCase(d_x, d_y +1).estMur())
     {
     ++d_y;
     notifierObservateurs();
     }
-    else if(d_direction == 'O' && d_terrain.getCase(d_x -1, d_y)!= '-')
+    else if(d_direction == 'O' && !d_terrain->getCase(d_x -1, d_y).estMur())
     {
     --d_x;
     notifierObservateurs();

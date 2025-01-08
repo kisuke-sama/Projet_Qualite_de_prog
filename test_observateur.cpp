@@ -9,12 +9,12 @@ TEST_CASE("Test des mouvement et de la détection d'obstacle") {
     Terrain terrain{};
     terrain.chargerDepuisFichier("labyrinthe_test.txt");
     Robot robot{&terrain};
-    ObservateurConsole observer;
-    robot.ajouterObservateur(std::make_unique<Observateur>(observer));
+    auto observer = std::make_unique<ObservateurConsole>();
+    robot.ajouterObservateur(std::move(observer));
 
     SUBCASE("Test aller à droite"){
         robot.tourneD();
         std::ostringstream ost{};
-        REQUIRE_EQ( ost, "Le robot s'est déplacé à (12,16) en direction E");
+        REQUIRE_EQ( ost.str(), "Le robot s'est déplacé à (11, 15) en direction E");
     }
 }

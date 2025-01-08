@@ -7,8 +7,8 @@ TEST_CASE("Test des mouvement et de la détection d'obstacle") {
     Terrain terrain{};
     terrain.chargerDepuisFichier("labyrinthe_test.txt");
     Robot robot{&terrain};
-    ObservateurConsole observer;
-    robot.ajouterObservateur(std::make_unique<Observateur>(observer));
+    auto observer = std::make_unique<ObservateurConsole>();
+    robot.ajouterObservateur(std::move(observer));
 
     SUBCASE("Test aller à droite"){
         robot.tourneD();
@@ -16,7 +16,7 @@ TEST_CASE("Test des mouvement et de la détection d'obstacle") {
         REQUIRE_EQ(robot.obstacleAGauche() , false);
         REQUIRE_EQ(robot.obstacleDevant() , false);
     }
-    
+
     SUBCASE("Test aller à gauche"){
         robot.tourneG();
         REQUIRE_EQ(robot.obstacleADroite() , false);

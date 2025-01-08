@@ -121,11 +121,11 @@ void Robot::avance()
 }
 
 void Robot::ajouterObservateur(std::unique_ptr<Observateur> observateur) {
-    d_observateurs.push_back(std::make_unique<Observateur>(observateur));
+    d_observateurs.push_back(std::move(observateur));
 }
 
 void Robot::notifierObservateurs() {
-    for (int i = 0; i<d_observateurs.size();i++) {
-        d_observateurs[i]->notifier(d_x, d_y, d_direction);
+    for (const auto& observateur : d_observateurs) {
+        observateur->notifier(d_x, d_y, d_direction);
     }
 }

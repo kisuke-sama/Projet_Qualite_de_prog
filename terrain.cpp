@@ -62,7 +62,7 @@ void Terrain::sauvegarderDansFichier(const std::string& cheminFichier) const {
 
     for (const auto& ligne : d_grilleTerrain) {
         for (const auto& c : ligne) {
-            if (c.getType() == "Mur") fichierSortie << '#';
+            if (c.getType() == "Mur") fichierSortie << 'X';
             else if (c.getType() == "Vide") fichierSortie << '.';
             else if (c.getType() == "Arrivée") fichierSortie << 'S';
             else if (c.getType() == "Départ") fichierSortie << 'E';

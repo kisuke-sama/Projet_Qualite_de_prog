@@ -2,32 +2,43 @@
 #define ROBOT_H
 #include "observateur.h"
 #include "terrain.h"
+#include "case.h"
+#include <memory>
 
 class Robot
 {
     public:
-        Robot();
+        Robot(Terrain* terrain = nullptr);
 
         //Accesseurs
-        int retournX() const;
-        int retournY() const;
+        int retourneX() const;
+        int retourneY() const;
         char direction() const;
 
         //Tourne a droite ou a gauche
         void tourneD();
         void tourneG();
 
-        // Fait apparaitre un robo dans le terrain Tx ,Ty avec un sens aléatoire
+        //Se retourner
+        void demiTour();
+
+        // Fait apparaitre un robo dans le terrain Tx ,Ty avec un sens alï¿½atoire
         void apparait();
+
+        // VÃ©rifier s'il y a un obstacle
+        bool obstacleDevant() const;
+        bool obstacleADroite() const;
+        bool obstacleAGauche() const;
+
+        // VÃ©rifie si on est sorti du labyrinthe
+        bool detecteArrivee() const;
 
         // Avance si la case est vide
         void avance();
 
-        //Affiche la direction dans le terrain
-        char affichage();
 
-        // Méthodes pour gérer les observateurs
-        void ajouterObservateur(Observateur* observateur);
+        // Mï¿½thodes pour gï¿½rer les observateurs
+        void ajouterObservateur(std::unique_ptr<Observateur> observateur);
         void notifierObservateurs();
 
     private:
@@ -36,7 +47,7 @@ class Robot
         // Pointeur sur le terrain
         Terrain* d_terrain;
         // Liste des observateurs
-        std::vector<Observateur*> d_observateurs;
+        std::vector<std::unique_ptr<Observateur>> d_observateurs;
 };
 
 #endif // ROBOT_H

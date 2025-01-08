@@ -8,7 +8,7 @@ private:
 public:
     Menu();
     virtual ~Menu() = default;
-    void run();
+    void execute();
 };
 
 #endif // MENU_H

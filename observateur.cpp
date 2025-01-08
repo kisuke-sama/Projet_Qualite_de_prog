@@ -2,19 +2,7 @@
 
 // Méthode pour notifier un déplacement du robot
 
-void Observateur::notifier(int x, int y, char direction)
- {
-    std::string message = "Le robot s'est déplacé à (" + std::to_string(x) + ", " + std::to_string(y) + ") en direction " + std::to_string(direction);
-    d_listeDeplacements.push_back(message);
-    std::cout << message << std::endl;
-}
-
-// Méthode pour afficher tous les déplacements enregistrés
-
-void Observateur::afficherDeplacements() const
+void ObservateurConsole::notifier(int x, int y, char direction)
 {
-    std::cout << "Liste des déplacements du robot :" << std::endl;
-    for (const auto& message : d_listeDeplacements) {
-        std::cout << message << std::endl;
-    }
+    std::cout << "Le robot s'est déplacé à (" << x << ", " << y << ") en direction " << direction << std::endl;
 }

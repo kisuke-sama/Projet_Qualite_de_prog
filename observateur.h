@@ -8,13 +8,13 @@
 class Observateur {
 public:
     // Méthode pour notifier un déplacement du robot
-    void notifier(int x, int y, char direction);
+    virtual void notifier(int x, int y, char direction) = 0;
+};
 
-    // Affiche la liste complète des déplacements
-    void afficherDeplacements() const;
-
-private:
-    std::vector<std::string> d_listeDeplacements;
+class ObservateurConsole : public Observateur{
+public:
+    // Notifie dans la console
+    void notifier(int x, int y, char direction) override;
 };
 
 #endif // OBSERVATEUR_H

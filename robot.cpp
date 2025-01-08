@@ -1,18 +1,17 @@
 #include "robot.h"
 #include <stdlib.h>     /* rand */
 
-
-Robot::Robot()
+Robot::Robot(Terrain* terrain): d_terrain{terrain},d_x{0},d_y{0},d_direction{'N'}
 {
     apparait();
 }
 
-int Robot::retournX() const
+int Robot::retourneX() const
 {
     return d_x;
 }
 
-int Robot::retournY() const
+int Robot::retourneY() const
 {
     return d_y;
 }
@@ -24,20 +23,36 @@ char Robot::direction() const
 
 void Robot::tourneD()
 {
-    if (d_direction == 'N') d_direction = 'E';
-    else if (d_direction == 'E') d_direction = 'S';
-    else if (d_direction == 'S') d_direction = 'O';
-    else if (d_direction == 'O') d_direction = 'N';
+    switch (d_direction) {
+        case 'E': d_direction = 'S'; break;
+        case 'O': d_direction = 'N'; break;
+        case 'N': d_direction = 'E'; break;
+        case 'S': d_direction = 'O'; break;
+    }
 
     notifierObservateurs();
 }
 
 void Robot::tourneG()
 {
-    if (d_direction == 'N') d_direction = 'O';
-    else if (d_direction == 'E') d_direction = 'N';
-    else if (d_direction == 'S') d_direction = 'E';
-    else if (d_direction == 'O') d_direction = 'S';
+    switch (d_direction) {
+        case 'E': d_direction = 'N'; break;
+        case 'O': d_direction = 'S'; break;
+        case 'N': d_direction = 'O'; break;
+        case 'S': d_direction = 'E'; break;
+    }
+
+    notifierObservateurs();
+}
+
+void Robot::demiTour()
+{
+    switch (d_direction) {
+        case 'E': d_direction = 'O'; break;
+        case 'O': d_direction = 'E'; break;
+        case 'N': d_direction = 'S'; break;
+        case 'S': d_direction = 'N'; break;
+    }
 
     notifierObservateurs();
 }
@@ -49,55 +64,68 @@ void Robot::apparait()
     d_direction='N';
 }
 
+bool Robot::obstacleDevant() const {
+    int nouveauX = d_x, nouveauY = d_y;
+    switch (d_direction) {
+        case 'E': nouveauX++; break;
+        case 'O': nouveauX--; break;
+        case 'N': nouveauY--; break;
+        case 'S': nouveauY++; break;
+    }
+    return d_terrain->getCase(nouveauX,nouveauY).estMur();
+}
+
+bool Robot::obstacleADroite() const {
+    int nouveauX = d_x, nouveauY = d_y;
+    switch (d_direction) {
+        case 'E': nouveauY--; break;
+        case 'O': nouveauY++; break;
+        case 'N': nouveauX--; break;
+        case 'S': nouveauX++; break;
+    }
+    return d_terrain->getCase(nouveauX,nouveauY).estMur();
+}
+
+bool Robot::obstacleAGauche() const {
+    int nouveauX = d_x, nouveauY = d_y;
+    switch (d_direction) {
+        case 'E': nouveauY++; break;
+        case 'O': nouveauY--; break;
+        case 'N': nouveauX++; break;
+        case 'S': nouveauX--; break;
+    }
+    return d_terrain->getCase(nouveauX,nouveauY).estMur();
+}
+
+bool Robot::detecteArrivee() const
+{
+    return (d_terrain->getCase(d_x,d_y).getType() == "ArrivÃ©e");
+}
+
 void Robot::avance()
 {
-    if (d_direction == 'N' && !d_terrain->getCase(d_x, d_y -1).estMur() )
-    {
-    --d_y;
-    notifierObservateurs();
+    int nouveauX = d_x, nouveauY = d_y;
+    // On s'adapte Ã  la direction dans laquelle on fait face
+    switch (d_direction) {
+        case 'E': nouveauX++; break;
+        case 'O': nouveauX--; break;
+        case 'N': nouveauY--; break;
+        case 'S': nouveauY++; break;
     }
-    else if (d_direction == 'E' && !d_terrain->getCase(d_x +1, d_y).estMur())
-    {
-    ++d_x;
-    notifierObservateurs();
-    }
-    else if (d_direction == 'S' && !d_terrain->getCase(d_x, d_y +1).estMur())
-    {
-    ++d_y;
-    notifierObservateurs();
-    }
-    else if(d_direction == 'O' && !d_terrain->getCase(d_x -1, d_y).estMur())
-    {
-    --d_x;
-    notifierObservateurs();
+    // Si la voie est libre, on avance
+    if (!obstacleDevant()) {
+        d_x = nouveauX;
+        d_y = nouveauY;
+        notifierObservateurs();
     }
 }
 
-/*
-Pas sûr de garder cette fonction car on n'est pas censé afficher le labyrinth
-en temps réel
-*/
-char Robot::affichage()
-{
-    if (d_direction == 'N' )
-    {return d_affichage = '^';}
-
-    else if (d_direction == 'E' )
-    {return d_affichage = '>';}
-
-    else if (d_direction == 'S' )
-    {return d_affichage = 'v';}
-
-    else if (d_direction == 'O' )
-    {return d_affichage = '<';}
-}
-
-void Robot::ajouterObservateur(Observateur* observateur) {
-    d_observateurs.push_back(observateur);
+void Robot::ajouterObservateur(std::unique_ptr<Observateur> observateur) {
+    d_observateurs.push_back(std::make_unique<Observateur>(observateur));
 }
 
 void Robot::notifierObservateurs() {
-    for (Observateur* observateur : d_observateurs) {
-        observateur->notifier(d_x, d_y, d_direction);
+    for (int i = 0; i<d_observateurs.size();i++) {
+        d_observateurs[i]->notifier(d_x, d_y, d_direction);
     }
 }

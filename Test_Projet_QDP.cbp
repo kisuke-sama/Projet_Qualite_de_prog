@@ -32,7 +32,20 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="main.cpp" />
+		<Unit filename="case.cpp" />
+		<Unit filename="case.h" />
+		<Unit filename="doctest.h" />
+		<Unit filename="menu.cpp" />
+		<Unit filename="menu.h" />
+		<Unit filename="observateur.cpp" />
+		<Unit filename="observateur.h" />
+		<Unit filename="robot.cpp" />
+		<Unit filename="robot.h" />
+		<Unit filename="terrain.cpp" />
+		<Unit filename="terrain.h" />
+		<Unit filename="test_case.cpp" />
+		<Unit filename="test_main.cpp" />
+		<Unit filename="test_terrain.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

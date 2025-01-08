@@ -58,13 +58,14 @@
 	"doctest.h"
 	"Case.h"
 
-1736300074 source:c:\users\theob\documents\github\projet_qualite_de_prog\observateur.cpp
+1736342474 source:c:\users\theob\documents\github\projet_qualite_de_prog\observateur.cpp
 	"observateur.h"
 
-1736300068 c:\users\theob\documents\github\projet_qualite_de_prog\observateur.h
+1736342536 c:\users\theob\documents\github\projet_qualite_de_prog\observateur.h
 	<vector>
 	<string>
 	<iostream>
+	<sstream>
 
 1736262288 source:c:\users\theob\documents\github\projet_qualite_de_prog\case.cpp
 	"Case.h"
@@ -82,7 +83,7 @@
 	<string>
 	"Case.h"
 
-1736299345 c:\users\theob\documents\github\projet_qualite_de_prog\robot.h
+1736354845 c:\users\theob\documents\github\projet_qualite_de_prog\robot.h
 	"observateur.h"
 	"terrain.h"
 	"case.h"
@@ -101,7 +102,7 @@
 1736297724 source:c:\users\theob\documents\github\projet_qualite_de_prog\test_algo.cpp
 	"doctest.h"
 
-1736341641 source:c:\users\theob\documents\github\projet_qualite_de_prog\test_observateur.cpp
+1736351419 source:c:\users\theob\documents\github\projet_qualite_de_prog\test_observateur.cpp
 	"doctest.h"
 	"robot.h"
 	"terrain.h"

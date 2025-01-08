@@ -32,6 +32,7 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="algo.h" />
 		<Unit filename="case.cpp" />
 		<Unit filename="case.h" />
 		<Unit filename="main.cpp" />

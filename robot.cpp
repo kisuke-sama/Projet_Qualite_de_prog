@@ -1,7 +1,8 @@
 #include "robot.h"
 #include <stdlib.h>     /* rand */
 
-Robot::Robot(Terrain* terrain): d_terrain{terrain},d_x{0},d_y{0},d_direction{'N'}
+Robot::Robot(Terrain* terrain)
+    : d_terrain{terrain}, d_x{0}, d_y{0}, d_direction{'N'}
 {
     apparait();
 }
@@ -59,12 +60,17 @@ void Robot::demiTour()
 
 void Robot::apparait()
 {
-    d_x=d_terrain->getCaseDepart()->getX();
-    d_y=d_terrain->getCaseDepart()->getY();
-    d_direction='N';
+    if (d_terrain) {
+        d_x = d_terrain->getCaseDepart()->getX();
+        d_y = d_terrain->getCaseDepart()->getY();
+        d_direction = 'N';
+    }
 }
 
-bool Robot::obstacleDevant() const {
+bool Robot::obstacleDevant() const
+{
+    if (!d_terrain) return false;
+
     int nouveauX = d_x, nouveauY = d_y;
     switch (d_direction) {
         case 'E': nouveauX++; break;
@@ -72,10 +78,13 @@ bool Robot::obstacleDevant() const {
         case 'N': nouveauY--; break;
         case 'S': nouveauY++; break;
     }
-    return d_terrain->getCase(nouveauX,nouveauY).estMur();
+    return d_terrain->getCase(nouveauX, nouveauY).estMur();
 }
 
-bool Robot::obstacleADroite() const {
+bool Robot::obstacleADroite() const
+{
+    if (!d_terrain) return false;
+
     int nouveauX = d_x, nouveauY = d_y;
     switch (d_direction) {
         case 'E': nouveauY--; break;
@@ -83,10 +92,13 @@ bool Robot::obstacleADroite() const {
         case 'N': nouveauX--; break;
         case 'S': nouveauX++; break;
     }
-    return d_terrain->getCase(nouveauX,nouveauY).estMur();
+    return d_terrain->getCase(nouveauX, nouveauY).estMur();
 }
 
-bool Robot::obstacleAGauche() const {
+bool Robot::obstacleAGauche() const
+{
+    if (!d_terrain) return false;
+
     int nouveauX = d_x, nouveauY = d_y;
     switch (d_direction) {
         case 'E': nouveauY++; break;
@@ -94,16 +106,20 @@ bool Robot::obstacleAGauche() const {
         case 'N': nouveauX++; break;
         case 'S': nouveauX--; break;
     }
-    return d_terrain->getCase(nouveauX,nouveauY).estMur();
+    return d_terrain->getCase(nouveauX, nouveauY).estMur();
 }
 
 bool Robot::detecteArrivee() const
 {
-    return (d_terrain->getCase(d_x,d_y).getType() == "Arrivée");
+    if (!d_terrain) return false;
+
+    return (d_terrain->getCase(d_x, d_y).getType() == "Arrivée");
 }
 
 void Robot::avance()
 {
+    if (!d_terrain) return;
+
     int nouveauX = d_x, nouveauY = d_y;
     // On s'adapte à la direction dans laquelle on fait face
     switch (d_direction) {
@@ -120,11 +136,13 @@ void Robot::avance()
     }
 }
 
-void Robot::ajouterObservateur(std::unique_ptr<Observateur> observateur) {
+void Robot::ajouterObservateur(std::unique_ptr<Observateur> observateur)
+{
     d_observateurs.push_back(std::move(observateur));
 }
 
-void Robot::notifierObservateurs() {
+void Robot::notifierObservateurs()
+{
     for (const auto& observateur : d_observateurs) {
         observateur->notifier(d_x, d_y, d_direction);
     }

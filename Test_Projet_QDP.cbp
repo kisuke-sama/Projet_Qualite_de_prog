@@ -32,6 +32,7 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="algo.h" />
 		<Unit filename="case.cpp" />
 		<Unit filename="case.h" />
 		<Unit filename="doctest.h" />
@@ -43,8 +44,11 @@
 		<Unit filename="robot.h" />
 		<Unit filename="terrain.cpp" />
 		<Unit filename="terrain.h" />
+		<Unit filename="test_algo.cpp" />
 		<Unit filename="test_case.cpp" />
 		<Unit filename="test_main.cpp" />
+		<Unit filename="test_observateur.cpp" />
+		<Unit filename="test_robot.cpp" />
 		<Unit filename="test_terrain.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />

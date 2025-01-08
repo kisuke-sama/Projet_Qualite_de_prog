@@ -41,6 +41,10 @@ class Robot
         void ajouterObservateur(std::unique_ptr<Observateur> observateur);
         void notifierObservateurs();
 
+        // Supprimer le constructeur de copie et l'opérateur d'affectation
+        Robot(const Robot&) = delete;
+        Robot& operator=(const Robot&) = delete;
+
     private:
         int d_x,d_y;
         char d_direction,d_affichage;

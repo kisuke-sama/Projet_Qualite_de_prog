@@ -19,52 +19,57 @@
 	<vector>
 	"Case.h"
 
-1735036201 source:c:\users\theob\documents\github\projet_qualite_de_prog\case.cpp
+1736262288 source:c:\users\theob\documents\github\projet_qualite_de_prog\case.cpp
 	"Case.h"
 
-1735036188 c:\users\theob\documents\github\projet_qualite_de_prog\case.h
+1736262350 c:\users\theob\documents\github\projet_qualite_de_prog\case.h
 	<string>
 
-1736173988 source:c:\users\theob\documents\github\projet_qualite_de_prog\main.cpp
+1736377062 source:c:\users\theob\documents\github\projet_qualite_de_prog\main.cpp
 	<iostream>
 	"terrain.h"
 	"robot.h"
+	"algo.h"
 
-1735036308 c:\users\theob\documents\github\projet_qualite_de_prog\terrain.h
+1736263364 c:\users\theob\documents\github\projet_qualite_de_prog\terrain.h
 	<vector>
+	<string>
 	"Case.h"
 
-1736174091 c:\users\theob\documents\github\projet_qualite_de_prog\robot.h
+1736376970 c:\users\theob\documents\github\projet_qualite_de_prog\robot.h
 	"observateur.h"
 	"terrain.h"
+	"case.h"
+	<memory>
 
-1736172379 c:\users\theob\documents\github\projet_qualite_de_prog\observateur.h
+1736342536 c:\users\theob\documents\github\projet_qualite_de_prog\observateur.h
 	<vector>
 	<string>
 	<iostream>
+	<sstream>
 
-1736106518 source:c:\users\theob\documents\github\projet_qualite_de_prog\robot.cpp
+1736376856 source:c:\users\theob\documents\github\projet_qualite_de_prog\robot.cpp
 	"robot.h"
 	<stdlib.h>
 
-1735854729 source:c:\users\theob\documents\github\projet_qualite_de_prog\terrain.cpp
-	"Terrain.h"
-	<iostream>
-	<fstream>
-	<stdexcept>
+1736299154 source:c:\users\theob\documents\github\projet_qualite_de_prog\terrain.cpp
 	"Terrain.h"
 	<iostream>
 	<fstream>
 	<stdexcept>
 
-1736174114 source:c:\users\theob\documents\github\projet_qualite_de_prog\menu.cpp
+1736340750 source:c:\users\theob\documents\github\projet_qualite_de_prog\menu.cpp
 	"menu.h"
 	<iostream>
 	"terrain.h"
 	"robot.h"
 
-1736106582 c:\users\theob\documents\github\projet_qualite_de_prog\menu.h
+1736278418 c:\users\theob\documents\github\projet_qualite_de_prog\menu.h
 
-1736174129 source:c:\users\theob\documents\github\projet_qualite_de_prog\observateur.cpp
+1736342474 source:c:\users\theob\documents\github\projet_qualite_de_prog\observateur.cpp
 	"observateur.h"
+
+1736377082 c:\users\theob\documents\github\projet_qualite_de_prog\algo.h
+	"robot.h"
+	"terrain.h"
 

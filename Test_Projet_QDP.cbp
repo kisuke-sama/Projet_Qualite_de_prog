@@ -46,9 +46,9 @@
 		<Unit filename="terrain.h" />
 		<Unit filename="test_algo.cpp" />
 		<Unit filename="test_case.cpp" />
+		<Unit filename="test_detection_obstacles.cpp" />
 		<Unit filename="test_main.cpp" />
 		<Unit filename="test_observateur.cpp" />
-		<Unit filename="test_robot.cpp" />
 		<Unit filename="test_terrain.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />

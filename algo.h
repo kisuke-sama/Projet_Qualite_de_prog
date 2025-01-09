@@ -1,81 +1,85 @@
 #include "robot.h"
 #include "terrain.h"
+#include <iostream>
 
 namespace algorithmes
 {
     void mainDroite(Robot& robot)
-{
-    // initialisation
-    if(robot.obstacleADroite() == false)
     {
-        while(robot.obstacleDevant() == true)
-        {
-            robot.avance();
-        }
-        robot.tourneG();
-    }
-    // boucle de resolution
+        std::cout << robot.direction() << std::endl;
 
-    while(!robot.detecteArrivee())
-    {
-        if(robot.obstacleADroite()== false)
+        // Initialisation
+        if (!robot.obstacleADroite())
         {
-            robot.tourneD();
-            robot.avance();
-        }
-        if(robot.obstacleDevant() == false)
-        {
+            while (!robot.obstacleDevant())
+            {
+                robot.avance();
+                std::cout << ' ' << robot.obstacleDevant();
+            }
             robot.tourneG();
         }
-        else
+
+        // Boucle de résolution
+        while (!robot.detecteArrivee())
         {
-            robot.avance();
-        }
-    }
-
-}
-
-void pledge (Robot& robot)
-{
-    int conteur = 0 ;
-    // initialisation
-    while(robot.obstacleDevant() == true)
-    {
-        robot.avance();
-    }
-    robot.tourneG();
-    conteur++;
-
-    // boucle de resolution
-
-    while(!robot.detecteArrivee())
-    {
-        while(conteur != 0)
-        {
-            if(robot.obstacleADroite()== false)
+            if (!robot.obstacleADroite())
             {
                 robot.tourneD();
-                conteur -- ;
                 robot.avance();
             }
-            if(robot.obstacleDevant() == false)
+            else if (robot.obstacleDevant())
             {
                 robot.tourneG();
-                conteur ++ ;
             }
             else
             {
                 robot.avance();
             }
         }
-        if(conteur == 0)
+    }
+
+    void pledge(Robot& robot)
+    {
+        int compteur = 0;
+
+        // Initialisation : avancer jusqu'à rencontrer un obstacle devant
+        while (!robot.obstacleDevant())
         {
-            while(robot. obstacleDevant() == true)
+            robot.avance();
+        }
+        robot.tourneG();
+        compteur++;
+
+        // Boucle de résolution
+        while (!robot.detecteArrivee())
+        {
+            if (!robot.obstacleADroite())
+            {
+                robot.tourneD();
+                compteur--;
+                robot.avance();
+            }
+            else if (robot.obstacleDevant())
+            {
+                robot.tourneG();
+                compteur++;
+            }
+            else
             {
                 robot.avance();
             }
+
+            // Si le compteur est à zéro, avancer jusqu'à rencontrer un obstacle devant
+            if (compteur == 0)
+            {
+                while (!robot.obstacleDevant())
+                {
+                    robot.avance();
+                }
+                robot.tourneG();
+                compteur++;
+            }
         }
     }
-}
 
 } // namespace algorithmes

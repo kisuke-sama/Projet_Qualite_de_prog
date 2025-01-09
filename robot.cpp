@@ -71,10 +71,10 @@ bool Robot::obstacleDevant() const
 
     int nouveauX = d_x, nouveauY = d_y;
     switch (d_direction) {
-        case 'E': nouveauX++; break;
-        case 'O': nouveauX--; break;
-        case 'N': nouveauY--; break;
-        case 'S': nouveauY++; break;
+        case 'E': nouveauY++; break;
+        case 'O': nouveauY--; break;
+        case 'N': nouveauX--; break;
+        case 'S': nouveauX++; break;
     }
     return d_terrain->getCase(nouveauX, nouveauY).estMur();
 }
@@ -85,10 +85,10 @@ bool Robot::obstacleADroite() const
 
     int nouveauX = d_x, nouveauY = d_y;
     switch (d_direction) {
-        case 'E': nouveauY++; break;
-        case 'O': nouveauY--; break;
-        case 'N': nouveauX++; break;
-        case 'S': nouveauX--; break;
+        case 'E': nouveauX++; break;
+        case 'O': nouveauX--; break;
+        case 'N': nouveauY++; break;
+        case 'S': nouveauY--; break;
     }
     return d_terrain->getCase(nouveauX, nouveauY).estMur();
 }
@@ -100,10 +100,10 @@ bool Robot::obstacleAGauche() const
 
     int nouveauX = d_x, nouveauY = d_y;
     switch (d_direction) {
-        case 'E': nouveauY--; break;
-        case 'O': nouveauY++; break;
-        case 'N': nouveauX--; break;
-        case 'S': nouveauX++; break;
+        case 'E': nouveauX--; break;
+        case 'O': nouveauX++; break;
+        case 'N': nouveauY--; break;
+        case 'S': nouveauY++; break;
     }
     return d_terrain->getCase(nouveauX, nouveauY).estMur();
 }
@@ -122,13 +122,13 @@ void Robot::avance()
     int nouveauX = d_x, nouveauY = d_y;
     // On s'adapte à la direction dans laquelle on fait face
     switch (d_direction) {
-        case 'E': nouveauX++; break;
-        case 'O': nouveauX--; break;
-        case 'N': nouveauY--; break;
-        case 'S': nouveauY++; break;
+        case 'E': nouveauY++; break;
+        case 'O': nouveauY--; break;
+        case 'N': nouveauX--; break;
+        case 'S': nouveauX++; break;
     }
     // Si la voie est libre, on avance
-    if (!obstacleDevant()) {
+    if (obstacleDevant() == false) {
         d_x = nouveauX;
         d_y = nouveauY;
         notifierObservateurs();

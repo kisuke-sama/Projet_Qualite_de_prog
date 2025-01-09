@@ -15,10 +15,6 @@ public:
 class ObservateurConsole : public Observateur {
 public:
     void notifier(int x, int y, char direction) override;
-    std::ostringstream& getOutput();
-
-private:
-    std::ostringstream d_ost;
 };
 
 #endif // OBSERVATEUR_H

@@ -9,6 +9,7 @@ void execute() {
     Terrain terrainCourant{};
 
     // Demander le nom du fichier contenant le labyrinthe
+    std::cout << "Attention : les labyrinthes que vous entrez doivent impérativement être muni d'une entrée et d'une sortie ACCESSIBLE!" << std::endl;
     std::cout << "Entrez le nom du fichier contenant le labyrinthe : " << std::endl;
     std::cin >> nomFichierIn;
 

@@ -1,5 +1,4 @@
 #include "robot.h"
-#include <stdlib.h>     /* rand */
 
 Robot::Robot(Terrain* terrain)
     : d_terrain{terrain}, d_x{0}, d_y{0}, d_direction{'N'}
@@ -63,7 +62,6 @@ void Robot::apparait()
     if (d_terrain) {
         d_x = d_terrain->getCaseDepart()->getX();
         d_y = d_terrain->getCaseDepart()->getY();
-        d_direction = 'N';
     }
 }
 
@@ -87,13 +85,14 @@ bool Robot::obstacleADroite() const
 
     int nouveauX = d_x, nouveauY = d_y;
     switch (d_direction) {
-        case 'E': nouveauY--; break;
-        case 'O': nouveauY++; break;
-        case 'N': nouveauX--; break;
-        case 'S': nouveauX++; break;
+        case 'E': nouveauY++; break;
+        case 'O': nouveauY--; break;
+        case 'N': nouveauX++; break;
+        case 'S': nouveauX--; break;
     }
     return d_terrain->getCase(nouveauX, nouveauY).estMur();
 }
+
 
 bool Robot::obstacleAGauche() const
 {
@@ -101,10 +100,10 @@ bool Robot::obstacleAGauche() const
 
     int nouveauX = d_x, nouveauY = d_y;
     switch (d_direction) {
-        case 'E': nouveauY++; break;
-        case 'O': nouveauY--; break;
-        case 'N': nouveauX++; break;
-        case 'S': nouveauX--; break;
+        case 'E': nouveauY--; break;
+        case 'O': nouveauY++; break;
+        case 'N': nouveauX--; break;
+        case 'S': nouveauX++; break;
     }
     return d_terrain->getCase(nouveauX, nouveauY).estMur();
 }

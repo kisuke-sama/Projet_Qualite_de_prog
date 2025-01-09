@@ -3,6 +3,8 @@
 #include "observateur.h"
 #include "terrain.h"
 #include "case.h"
+#include <stdlib.h>     /* rand */
+#include <vector>
 #include <memory>
 
 class Robot
@@ -36,7 +38,6 @@ class Robot
         // Avance si la case est vide
         void avance();
 
-
         // M�thodes pour g�rer les observateurs
         void ajouterObservateur(std::unique_ptr<Observateur> observateur);
         void notifierObservateurs();
@@ -47,7 +48,7 @@ class Robot
 
     private:
         int d_x,d_y;
-        char d_direction,d_affichage;
+        char d_direction;
         // Pointeur sur le terrain
         Terrain* d_terrain;
         // Liste des observateurs

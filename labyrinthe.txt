@@ -1,9 +1,9 @@
 8 20
 XXXXXXXXXXXXXXXXXXXX
-S......XXXX........X
+X.S....XXXX........X
 X..................X
 X..X...............X
 X..X........X......X
-X..X........X......E
 X..X........X......X
+X..X........X..E...X
 XXXXXXXXXXXXXXXXXXXX

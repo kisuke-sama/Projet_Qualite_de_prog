@@ -81,6 +81,7 @@ void testerTerrain(){
 
 int main() {
 
-    execute();
+    //execute();
+    testerTerrain();
     return 0;
 }
